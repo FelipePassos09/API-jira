@@ -1,0 +1,55 @@
+import string
+import requests as rq
+from requests.auth import HTTPBasicAuth
+import json
+from datetime import date, timedelta, datetime
+import pandas as pd
+import zipfile
+import csv
+
+url_primary = "https://upfluxpm.atlassian.net/rest/api/3/"
+token = "1HIoLIKNtvxh7huivj3S59CB"
+user = 'felipep@upflux.net'
+auth = HTTPBasicAuth(user,token)
+
+def jqls(func=string):
+    url_extension = f'search'
+    url = url_primary + url_extension
+    
+    headers = {
+                "Accept": "application/json"
+        }
+
+    query = {
+            'jql': func
+        }
+
+    response = rq.request(
+            "GET",
+            url,
+            headers=headers,
+            params=query,
+            auth=auth
+    )
+
+    return json.dumps(json.loads(response.text), indent=4, sort_keys=True, separators=(",", ": "), ensure_ascii=False)
+
+lista_casos = []
+
+"""query = (f'project = Suporte and createdDate >= 2021-01-11')
+
+#createdDate >= {datetime.today() - timedelta(days=1)}
+
+data = json.loads(jqls(query))
+
+
+for k, v in data.items():
+    if k == 'issues':
+        for i in v:
+            lista_casos.append(i['key'])
+"""
+
+for i in range(1000, 3500, 1):
+    lista_casos.append(f'SU-{i}')
+
+print(lista_casos)
