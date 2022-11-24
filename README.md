@@ -1,6 +1,11 @@
 <a href="https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-worklogs/#api-rest-api-3-worklog-list-post">Documentação Completa</a>
 
-<p>Configurar método de leitura incremental com request sequencial a partir do número do chamado até que haja retorno dieferente de 200, nesse momento interromper a execução. Ainda estudando maneira de fazer a busca por tempo setando date.today como ínicio e regredindo conforme intervalo configurado no agendamento ou outro método de incremento amis efeciente.</p>
+<p>
+    Esses scripts irão, realizar a busca e transformação de dados em virtude de um modelo predefinido de dados a serem analizados. Esses scripts possuem diversos métodos, funções e modelos de ingestão e envio de dados via zip para um serviço terceiro, em tempo de execução.
+</p>
+<p>
+    Além disso há um método paralelo para controle de reabertura de items e de log de erros em virtude de cada consulta, os erros, nesta implementação, não incrementam novos items e loga o momento da última execução do script.
+</p>
 
 <table>
     <tr>
